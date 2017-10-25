@@ -55,5 +55,5 @@ exports.bundle = function * (fly) {
 [codecov]: https://codecov.io/gh/caseyWebb/taskr-rollup
 [codecov-shield]: https://img.shields.io/codecov/c/github/caseyWebb/taskr-rollup.svg
 
-[david-dm]: https://david-dm.org/caseyWebb/taskr-rollup
-[david-dm-shield]: https://img.shields.io/david/caseyWebb/taskr-rollup.svg
+[david-dm]: https://david-dm.org/caseyWebb/taskr-rollup#type=peer
+[david-dm-shield]: https://img.shields.io/david/peer/caseyWebb/taskr-rollup.svg
