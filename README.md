@@ -23,8 +23,8 @@ $ npm install taskr rollup taskr-rollup
 ## Usage
 
 ```js
-exports.bundle = function * (fly) {
-  yield fly
+exports.bundle = function * (task) {
+  yield task
     // bundle entry file
     .source('src/entry.js')
     .rollup({
