@@ -39,7 +39,7 @@
     "taskr": "^1.1.0"
   },
   "engines": {
-    "node": ">= 4.6"
+    "node": ">= 6.0"
   },
   "nyc": {
     "sourceMap": false
