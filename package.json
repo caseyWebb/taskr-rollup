@@ -10,8 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/caseyWebb/taskr-rollup.git"
   },
+  "main": "dist/index.js",
   "files": [
-    "index.js"
+    "dist"
   ],
   "keywords": [
     "taskr",
@@ -19,7 +20,10 @@
     "rollup"
   ],
   "scripts": {
-    "test": "nyc --reporter=lcov tape test/test.js | tap-spec"
+    "build": "tsc",
+    "pretest": "yarn build",
+    "test": "nyc --reporter=lcov tape test/test.js | tap-spec",
+    "prepublish": "yarn build"
   },
   "author": "Casey Webb <notcaseywebb@gmail.com>",
   "peerDependencies": {
@@ -36,7 +40,8 @@
     "rollup-plugin-babel": "^3.0.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.2.2",
-    "taskr": "^1.1.0"
+    "taskr": "^1.1.0",
+    "typescript": "^2.5.3"
   },
   "engines": {
     "node": ">= 6.0"

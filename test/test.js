@@ -35,6 +35,7 @@ const opts = {
   ],
   treeshake: false,
   output: {
+    file: 'bundle.js',
     name: 'module',
     sourcemap: false,
     format: 'iife'
@@ -53,7 +54,7 @@ test('taskr-rollup', t => {
       * basic(f) {
         yield f.source(`${dir}/entry.js`).rollup(opts).target(tmp)
 
-        const actual = yield f.$.read(`${tmp}/entry.js`, 'utf8')
+        const actual = yield f.$.read(`${tmp}/bundle.js`, 'utf8')
         t.ok(actual, 'writes output file')
         t.equal(actual, expected, 'produces correct content')
 
@@ -63,7 +64,7 @@ test('taskr-rollup', t => {
         opts.output.sourcemap = 'inline'
         yield f.source(`${dir}/entry.js`).rollup(opts).target(tmp)
 
-        const actual = yield f.$.read(`${tmp}/entry.js`, 'utf8')
+        const actual = yield f.$.read(`${tmp}/bundle.js`, 'utf8')
         t.ok(actual, 'writes output file')
         t.true(actual.indexOf(expected) > -1, 'produces correct content')
         t.true(actual.indexOf('# sourceMappingURL=data:application/json;base64') > -1, 'appends `sourceMappingURL` content')
@@ -79,11 +80,11 @@ test('taskr-rollup', t => {
         opts.output.sourcemap = true
         yield f.source(`${dir}/entry.js`).rollup(opts).target(tmp)
 
-        const actual = yield f.$.read(`${tmp}/entry.js`, 'utf8')
-        const map = yield f.$.read(`${tmp}/entry.js.map`, 'utf8')
+        const actual = yield f.$.read(`${tmp}/bundle.js`, 'utf8')
+        const map = yield f.$.read(`${tmp}/bundle.js.map`, 'utf8')
         t.ok(actual, 'writes output file')
         t.true(actual.indexOf(expected) > -1, 'produces correct content')
-        t.true(actual.indexOf('# sourceMappingURL=entry.js.map') > -1, 'appends `sourceMappingURL`')
+        t.true(actual.indexOf('# sourceMappingURL=bundle.js.map') > -1, 'appends `sourceMappingURL`')
         t.true(map.indexOf('{"version":3') === 0, 'writes external sourcemap')
 
         yield f.clear(tmp)

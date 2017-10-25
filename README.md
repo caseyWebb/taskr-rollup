@@ -33,6 +33,7 @@ exports.bundle = function * (task) {
         require('rollup-plugin-babel')()
       ],
       output: {
+        file: 'bundle.js,
         format: 'es'
       }
     })
@@ -40,8 +41,14 @@ exports.bundle = function * (task) {
 }
 ```
 
+## Configuration
+
+All [Rollup options][Rollup-options] are supported, with the exception of `input`.
+
 [Taskr]: https://github.com/lukeed/taskr
+
 [Rollup]: https://github.com/rollup/rollup
+[Rollup-options]: https://rollupjs.org/#configuration-files
 
 [npm]: https://npmjs.com/package/taskr-rollup
 [npm-shield]: https://img.shields.io/npm/v/taskr-rollup.svg
