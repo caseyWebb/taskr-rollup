@@ -1,4 +1,6 @@
 # taskr-rollup
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/caseyWebb/taskr-rollup.svg)](https://greenkeeper.io/)
 > [Rollup][] plugin for [Taskr][]
 
 [![NPM][npm-shield]][npm]
