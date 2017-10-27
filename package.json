@@ -1,6 +1,6 @@
 {
   "name": "taskr-rollup",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Rollup plugin for Taskr",
   "license": "WTFPL",
   "bugs": {
