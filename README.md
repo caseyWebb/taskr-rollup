@@ -1,6 +1,4 @@
 # taskr-rollup
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/caseyWebb/taskr-rollup.svg)](https://greenkeeper.io/)
 > [Rollup][] plugin for [Taskr][]
 
 [![NPM][npm-shield]][npm]
@@ -8,6 +6,7 @@
 [![Build Status][travis-ci-shield]][travis-ci]
 [![Coverage Status][codecov-shield]][codecov]
 [![Dependency Status][david-dm-shield]][david-dm]
+[![Greenkeeper][greenkeeper-shield]][greenkeeper]
 
 
 ## Install
@@ -35,7 +34,7 @@ exports.bundle = function * (task) {
         require('rollup-plugin-babel')()
       ],
       output: {
-        file: 'bundle.js,
+        file: 'bundle.js',
         format: 'es'
       }
     })
@@ -66,3 +65,6 @@ All [Rollup options][Rollup-options] are supported, with the exception of `input
 
 [david-dm]: https://david-dm.org/caseyWebb/taskr-rollup#type=peer
 [david-dm-shield]: https://img.shields.io/david/peer/caseyWebb/taskr-rollup.svg
+
+[greenkeeper]: https://greenkeeper.io/
+[greenkeeper-shield]: https://badges.greenkeeper.io/caseyWebb/taskr-filter.svg
