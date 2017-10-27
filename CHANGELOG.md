@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3
+
+### Fixed
+- Documentation
+
+
 ## 0.0.2
 
 ### Fixed
