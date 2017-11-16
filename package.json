@@ -33,7 +33,7 @@
   "devDependencies": {
     "@taskr/clear": "^1.1.0",
     "@types/node": "^8.0.47",
-    "@types/rollup": "^0.41.1",
+    "@types/rollup": "^0.51.0",
     "babel-core": "^6.26.0",
     "nyc": "^11.2.1",
     "rollup": "^0.50.0",
