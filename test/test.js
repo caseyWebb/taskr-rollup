@@ -11,18 +11,18 @@ const expected =
 `var module = (function () {
 'use strict';
 
-var a = function () {
+function a () {
   return 'a';
-};
+}
 
-var b = function () {
+function b () {
   return 'b';
-};
+}
 
-var entry = function () {
+function entry () {
   a();
   b();
-};
+}
 
 return entry;
 

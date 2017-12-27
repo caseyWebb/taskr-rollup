@@ -27,7 +27,7 @@
   },
   "author": "Casey Webb <notcaseywebb@gmail.com>",
   "peerDependencies": {
-    "rollup": "^0.50.0",
+    "rollup": "x.x.x",
     "taskr": "^1.1.0"
   },
   "devDependencies": {
