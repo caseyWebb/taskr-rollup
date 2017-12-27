@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.4
+
+### Dependencies
+- Updated rollup peer and dev deps
+
 ## 0.0.3
 
 ### Fixed
