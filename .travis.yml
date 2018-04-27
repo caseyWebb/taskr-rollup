@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - 8
-  - 7
-  - 6
-  - 10
+  - lts/boron
+  - lts/carbon
+  - node
 env:
   matrix:
   - TRAVIS=true
