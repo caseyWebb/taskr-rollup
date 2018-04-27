@@ -9,22 +9,22 @@ const tmp = path.join(__dirname, 'tmp')
 
 const expected =
 `var module = (function () {
-'use strict';
+  'use strict';
 
-function a () {
-  return 'a';
-}
+  function a () {
+    return 'a';
+  }
 
-function b () {
-  return 'b';
-}
+  function b () {
+    return 'b';
+  }
 
-function entry () {
-  a();
-  b();
-}
+  function entry () {
+    a();
+    b();
+  }
 
-return entry;
+  return entry;
 
 }());
 `
