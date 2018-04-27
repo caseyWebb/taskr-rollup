@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - lts/boron
-  - lts/carbon
-  - lts/dubnium
   - node
+  - lts/*
 env:
   matrix:
   - TRAVIS=true
