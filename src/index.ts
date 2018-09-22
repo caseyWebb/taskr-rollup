@@ -13,7 +13,7 @@ module.exports = function (task) {
       throw new Error(`[taskr-rollup] 'output.format' is required`)
     }
     
-    const { output: outputConfig, ...input: inputConfig } = config
+    const { output: outputConfig, ...inputConfig } = config
 
     for (const file of files) {
       inputConfig.input = path.format(file)
