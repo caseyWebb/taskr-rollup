@@ -35,7 +35,7 @@
     "@taskr/clear": "^1.1.0",
     "@types/node": "^10.10.3",
     "@types/rollup": "^0.54.0",
-    "nyc": "^13.0.1",
+    "nyc": "^14.0.0",
     "rollup": "^0.66.2",
     "rollup-plugin-babel": "^4.0.3",
     "tap-spec": "^5.0.0",
