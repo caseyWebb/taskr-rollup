@@ -200,19 +200,11 @@
     bluebird "^3.5.0"
     rimraf "^2.5.4"
 
-"@types/estree@0.0.38":
-  version "0.0.38"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.38.tgz#c1be40aa933723c608820a99a373a16d215a1ca2"
-
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
 
-"@types/node@*":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
-
-"@types/node@^10.10.3":
+"@types/node@*", "@types/node@^10.10.3":
   version "10.10.3"
   resolved "https://registry.npmjs.org/@types/node/-/node-10.10.3.tgz#09c75a4ad84d6a3d286790bdd9489a4f8ee9906c"
 
@@ -1347,16 +1339,9 @@ rollup-pluginutils@^2.3.0:
     estree-walker "^0.5.2"
     micromatch "^2.3.11"
 
-rollup@*:
-  version "0.58.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.58.2.tgz#2feddea8c0c022f3e74b35c48e3c21b3433803ce"
-  dependencies:
-    "@types/estree" "0.0.38"
-    "@types/node" "*"
-
-rollup@^0.66.2:
-  version "0.66.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.66.2.tgz#77acdb9f4093f5f035ce75480577c40a81ea7999"
+rollup@*, rollup@^0.68.2:
+  version "0.68.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.68.2.tgz#c26afb5d981ca7a1a32f76087dbde9dad4fcc653"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"
@@ -1426,7 +1411,7 @@ spdx-license-ids@^1.0.2:
 
 split@1.0.0:
   version "1.0.0"
-  resolved "http://registry.npmjs.org/split/-/split-1.0.0.tgz#c4395ce683abcd254bc28fe1dabb6e5c27dcffae"
+  resolved "https://registry.npmjs.org/split/-/split-1.0.0.tgz#c4395ce683abcd254bc28fe1dabb6e5c27dcffae"
   dependencies:
     through "2"
 
@@ -1655,7 +1640,7 @@ yargs-parser@^9.0.2:
 
 yargs@11.1.0:
   version "11.1.0"
-  resolved "http://registry.npmjs.org/yargs/-/yargs-11.1.0.tgz#90b869934ed6e871115ea2ff58b03f4724ed2d77"
+  resolved "https://registry.npmjs.org/yargs/-/yargs-11.1.0.tgz#90b869934ed6e871115ea2ff58b03f4724ed2d77"
   dependencies:
     cliui "^4.0.0"
     decamelize "^1.1.1"
