@@ -21,8 +21,9 @@
   ],
   "scripts": {
     "build": "tsc",
+    "lint": "eslint --ext .ts --ignore-path .gitignore ./",
     "pretest": "yarn build",
-    "test": "nyc --reporter=lcov tape test/test.js | tap-spec",
+    "test": "jest",
     "prepublish": "yarn build"
   },
   "author": "Casey Webb <notcaseywebb@gmail.com>",
@@ -33,20 +34,47 @@
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@taskr/clear": "^1.1.0",
+    "@types/jest": "^24.0.17",
     "@types/node": "^10.10.3",
     "@types/rollup": "^0.54.0",
-    "nyc": "^13.0.1",
+    "eslint": "^6.1.0",
+    "eslint-config-profiscience": "^4.0.7",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
     "rollup": "^0.68.2",
     "rollup-plugin-babel": "^4.0.3",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.9.1",
     "taskr": "^1.1.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.0.3"
   },
   "engines": {
     "node": ">= 6.0"
   },
-  "nyc": {
-    "sourceMap": false
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-profiscience"
+    ],
+    "env": {
+      "jest": true
+    },
+    "parserOptions": {
+      "sourceType": "script"
+    }
+  },
+  "jest": {
+    "collectCoverage": true,
+    "testMatch": [
+      "<rootDir>/test/**/*.ts",
+      "!**/.tmp/**",
+      "!**/fixtures/**"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "semi": false,
+    "singleQuote": true
   }
 }

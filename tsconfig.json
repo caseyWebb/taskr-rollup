@@ -5,11 +5,7 @@
     "outDir": "./dist",
     "importHelpers": true,
     "strict": false,
-    "alwaysStrict": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "esModuleInterop": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
