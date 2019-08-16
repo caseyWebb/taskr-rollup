@@ -23,8 +23,7 @@
     "build": "tsc",
     "lint": "eslint --ext .ts --ignore-path .gitignore ./",
     "test": "jest",
-    "prepublish": "yarn build",
-    "release": "standard-version"
+    "release": "standard-version --sign && git push --follow-tags"
   },
   "author": "Casey Webb <notcaseywebb@gmail.com>",
   "peerDependencies": {

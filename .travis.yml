@@ -5,9 +5,7 @@ node_js:
 branches:
   only:
     - master
-env:
-  matrix:
-    - TRAVIS=true
+    - /v\d+\.\d+/
 cache:
   yarn: true
   directories:
@@ -19,3 +17,11 @@ after_script:
   - npx codecov
 notifications:
   email: false
+deploy:
+  provider: npm
+  email: notcaseywebb@gmail.com
+  api_key:
+    secure: c5X7BXvGl1fN3IfnU1egIxm6T3uV4azXkm/WwWOW3Hix3FXKcjPArgKouaty3kHxk3QoYPcF9FOcSVFU5xl/DyaO8OzVQ/msiNWYCFdI/QRENzE0FejnBnxvQuc8xl5CkifCwFZNR/kgdMr8fJ+y8+PYQjDQe8Bg8RoKbuFLfsaxIfGAcOshCfwfMT2RNDrfTpFMQFkhQG9IBcYodp3kx0gUC+N+RJoTvaNg8Tqq7RFiHRSZvVvdWGZNwY+55KcOWX4PVK1T/bztCd9zqGtmWV6HLXCYnXoqwHH20/LwWXfqNESJCFX3vPD9b0mc2xd8ZvjcRqwyn0w+DseRiSyQq6vXX04G6ucnYYzdJ0Jy4CoFzmOpw96vZ3Is84W4ObEgI74FKo7vHuDyCPnoygeVaZlTukHKcutpsSrwrhs/L9pRn4vWOX1A0w13jsotAx8sYvbXxVeBECx0Jt7HPTW/1uNPcJNaTIBr8TNNpW/LxFv0/oL8HLdX2O080yTYJsNNHa8kXHi21bolZKa1qH39laCVkTwzk7A7sDogvHNyi6tUINl0PlJuni05sPtp9TbzlcspUwvbXFb/UMA/K8b4Y14Ly9M4Ursd9rYbEYNAH95zYD5yT8sTSaByXGp6jN5WR82skBpSSQJe/GWdnk7p+pzmfalJxIJtgNCZuXI+/Lg=
+  on:
+    tags: true
+    repo: caseyWebb/taskr-rollup
