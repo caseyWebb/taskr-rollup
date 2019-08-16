@@ -1,10 +1,12 @@
-const path = require('path')
-const { rollup } = require('rollup')
+import * as path from 'path'
+import { rollup } from 'rollup'
 
-module.exports = function (task) {
-  task.plugin('rollup', { every: false }, function* (files, config) {
+export = function(task) {
+  task.plugin('rollup', { every: false }, function*(entryFiles, config) {
     if (config.input) {
-      throw new Error(`[taskr-rollup] 'input' is not supported. Use taskr.source(<input>)`)
+      throw new Error(
+        `[taskr-rollup] 'input' is not supported. Use taskr.source(<input>)`
+      )
     }
     if (!config.output.file) {
       throw new Error(`[taskr-rollup] 'output.file' is required`)
@@ -12,37 +14,48 @@ module.exports = function (task) {
     if (!config.output.format) {
       throw new Error(`[taskr-rollup] 'output.format' is required`)
     }
-    
+
     const { output: outputConfig, ...inputConfig } = config
 
-    for (const file of files) {
-      inputConfig.input = path.format(file)
+    this._.files = []
+
+    for (const entryFile of entryFiles) {
+      inputConfig.input = path.format(entryFile)
 
       const bundle = yield rollup(inputConfig)
-      const { code, map } = yield bundle.generate(outputConfig)
+      const { output } = yield bundle.generate(outputConfig)
 
-      file.data = code
-      file.base = outputConfig.file
-
-      this._.files = []
-
-      if (outputConfig.sourcemap && map) {
-        if (outputConfig.sourcemap === 'inline') {
-          // inline sourcemaps
-          file.data += '\n//# sourceMappingURL=data:application/json;base64,'
-          file.data += Buffer.from(JSON.stringify(map)).toString('base64')
-        } else {
-          // external sourcemaps
-          file.data += `\n//# sourceMappingURL=${file.base}.map`
-          this._.files.push({
-            base: `${file.base}.map`,
-            dir: file.dir,
-            data: Buffer.from(JSON.stringify(map))
-          })
+      output.forEach((chunkOrAsset) => {
+        const f: any = {
+          ...entryFile
         }
-      }
 
-      this._.files.push(file)
+        if (chunkOrAsset.isAsset) {
+        } else {
+          f.data = chunkOrAsset.code
+          f.base = chunkOrAsset.fileName
+
+          if (outputConfig.sourcemap && chunkOrAsset.map) {
+            if (outputConfig.sourcemap === 'inline') {
+              // inline sourcemaps
+              f.data += '\n//# sourceMappingURL=data:application/json;base64,'
+              f.data += Buffer.from(JSON.stringify(chunkOrAsset.map)).toString(
+                'base64'
+              )
+            } else {
+              // external sourcemaps
+              f.data += `\n//# sourceMappingURL=${f.base}.map`
+              this._.files.push({
+                base: `${f.base}.map`,
+                dir: f.dir,
+                data: Buffer.from(JSON.stringify(chunkOrAsset.map))
+              })
+            }
+          }
+
+          this._.files.push(f)
+        }
+      })
     }
   })
 }

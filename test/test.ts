@@ -1,7 +1,11 @@
 import * as path from 'path'
 
+import { RollupOptions } from 'rollup'
+
 // @ts-ignore
 import Taskr from 'taskr'
+
+import plugin from '../src'
 
 const dir = path.join(__dirname, 'fixtures')
 const tmp = path.join(__dirname, 'tmp')
@@ -10,11 +14,11 @@ const expected = `var module = (function () {
   'use strict';
 
   function a () {
-    return 'a';
+    return 'a'
   }
 
   function b () {
-    return 'b';
+    return 'b'
   }
 
   function entry () {
@@ -27,24 +31,23 @@ const expected = `var module = (function () {
 }());
 `
 
-const opts = {
-  plugins: [require('rollup-plugin-babel')()],
+const opts: RollupOptions = {
   treeshake: false,
   output: {
     file: 'bundle.js',
     name: 'module',
-    sourcemap: false as boolean | string,
+    sourcemap: false,
     format: 'iife'
   }
 }
 
-test('taskr-rollup', async () => {
-  expect.assertions(9)
+test('basic', async () => {
+  expect.assertions(2)
 
   const taskr = new Taskr({
-    plugins: [require('../'), require('@taskr/clear')],
+    plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *basic(f) {
+      *default(f) {
         yield f
           .source(`${dir}/entry.js`)
           .rollup(opts)
@@ -55,8 +58,22 @@ test('taskr-rollup', async () => {
         expect(actual).toBe(expected)
 
         yield f.clear(tmp)
-      },
-      *inline(f) {
+      }
+    }
+  })
+
+  expect(taskr.plugins).toHaveProperty('rollup')
+
+  await taskr.start()
+})
+
+test('inline sourcemaps', async () => {
+  expect.assertions(4)
+
+  const taskr = new Taskr({
+    plugins: [plugin, require('@taskr/clear')],
+    tasks: {
+      *default(f) {
         opts.output.sourcemap = 'inline'
         yield f
           .source(`${dir}/entry.js`)
@@ -78,8 +95,20 @@ test('taskr-rollup', async () => {
         expect(JSON.parse(utf8Map).version).toBe(3)
 
         yield f.clear(tmp)
-      },
-      *external(f) {
+      }
+    }
+  })
+
+  await taskr.start()
+})
+
+test('external sourcemaps', async () => {
+  expect.assertions(3)
+
+  const taskr = new Taskr({
+    plugins: [plugin, require('@taskr/clear')],
+    tasks: {
+      *default(f) {
         opts.output.sourcemap = true
         yield f
           .source(`${dir}/entry.js`)
@@ -98,7 +127,5 @@ test('taskr-rollup', async () => {
     }
   })
 
-  expect(taskr.plugins).toHaveProperty('rollup')
-
-  await taskr.serial(['basic', 'inline', 'external'])
+  await taskr.start()
 })

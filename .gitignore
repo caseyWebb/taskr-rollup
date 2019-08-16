@@ -1,7 +1,7 @@
-.DS_Store
 *.log
 
-.nyc_output
+.DS_Store
+.vscode
 coverage
 dist
 node_modules

@@ -22,27 +22,23 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --ext .ts --ignore-path .gitignore ./",
-    "pretest": "yarn build",
     "test": "jest",
     "prepublish": "yarn build"
   },
   "author": "Casey Webb <notcaseywebb@gmail.com>",
   "peerDependencies": {
-    "rollup": "x.x.x",
+    "rollup": "1.x.x",
     "taskr": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.0",
     "@taskr/clear": "^1.1.0",
     "@types/jest": "^24.0.17",
     "@types/node": "^12.7.2",
-    "@types/rollup": "^0.54.0",
     "eslint": "^6.1.0",
     "eslint-config-profiscience": "^4.0.7",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
-    "rollup": "^0.68.2",
-    "rollup-plugin-babel": "^4.0.3",
+    "rollup": "^1.19.4",
     "taskr": "^1.1.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.0.3"
@@ -56,21 +52,21 @@
     ],
     "env": {
       "jest": true
-    },
-    "parserOptions": {
-      "sourceType": "script"
     }
   },
   "jest": {
     "collectCoverage": true,
     "testMatch": [
       "<rootDir>/test/**/*.ts",
-      "!**/.tmp/**",
+      "!**/tmp/**",
       "!**/fixtures/**"
     ],
     "transform": {
       "^.+\\.ts$": "ts-jest"
-    }
+    },
+    "watchPathIgnorePatterns": [
+      "<rootDir>/test/tmp"
+    ]
   },
   "prettier": {
     "arrowParens": "always",
