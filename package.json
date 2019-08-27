@@ -51,8 +51,11 @@
     "extends": [
       "eslint-config-profiscience"
     ],
-    "env": {
-      "jest": true
+    "parserOptions": {
+      "project": [
+        "./tsconfig.json",
+        "./test/tsconfig.json"
+      ]
     }
   },
   "jest": {
