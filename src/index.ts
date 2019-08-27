@@ -1,8 +1,8 @@
 import * as path from 'path'
 import { rollup } from 'rollup'
 
-export = function(task) {
-  task.plugin('rollup', { every: false }, function*(entryFiles, config) {
+export = function(task): void {
+  task.plugin('rollup', { every: false }, function*(entryFiles, config): IterableIterator<Promise<unknown>> {
     if (config.input) {
       throw new Error(
         `[taskr-rollup] 'input' is not supported. Use taskr.source(<input>)`
@@ -26,11 +26,16 @@ export = function(task) {
       const { output } = yield bundle.generate(outputConfig)
 
       output.forEach((chunkOrAsset) => {
-        const f: any = {
+        const f: {
+          base: string
+          data: string
+          dir: string
+        } = {
           ...entryFile
         }
 
         if (chunkOrAsset.isAsset) {
+          // @TODO
         } else {
           f.data = chunkOrAsset.code
           f.base = chunkOrAsset.fileName

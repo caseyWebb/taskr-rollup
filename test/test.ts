@@ -2,6 +2,7 @@ import * as path from 'path'
 
 import { RollupOptions } from 'rollup'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Taskr from 'taskr'
 
@@ -36,7 +37,7 @@ const opts: RollupOptions = {
   output: {
     file: 'bundle.js',
     name: 'module',
-    sourcemap: false,
+    sourcemap: false as boolean | 'inline',
     format: 'iife'
   }
 }
@@ -47,7 +48,7 @@ test('basic', async () => {
   const taskr = new Taskr({
     plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *default(f) {
+      *default(f: any): IterableIterator<Promise<unknown>> { // eslint-disable-line @typescript-eslint/no-explicit-any
         yield f
           .source(`${dir}/entry.js`)
           .rollup(opts)
@@ -73,7 +74,7 @@ test('inline sourcemaps', async () => {
   const taskr = new Taskr({
     plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *default(f) {
+      *default(f: any): IterableIterator<Promise<unknown>> { // eslint-disable-line @typescript-eslint/no-explicit-any
         opts.output.sourcemap = 'inline'
         yield f
           .source(`${dir}/entry.js`)
@@ -108,7 +109,7 @@ test('external sourcemaps', async () => {
   const taskr = new Taskr({
     plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *default(f) {
+      *default(f: any): IterableIterator<Promise<unknown>> { // eslint-disable-line @typescript-eslint/no-explicit-any
         opts.output.sourcemap = true
         yield f
           .source(`${dir}/entry.js`)
