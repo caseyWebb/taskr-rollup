@@ -48,7 +48,8 @@ test('basic', async () => {
   const taskr = new Taskr({
     plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *default(f: any): IterableIterator<Promise<unknown>> { // eslint-disable-line @typescript-eslint/no-explicit-any
+      *default(f: any): IterableIterator<Promise<unknown>> {
+        // eslint-disable-line @typescript-eslint/no-explicit-any
         yield f
           .source(`${dir}/entry.js`)
           .rollup(opts)
@@ -74,7 +75,8 @@ test('inline sourcemaps', async () => {
   const taskr = new Taskr({
     plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *default(f: any): IterableIterator<Promise<unknown>> { // eslint-disable-line @typescript-eslint/no-explicit-any
+      *default(f: any): IterableIterator<Promise<unknown>> {
+        // eslint-disable-line @typescript-eslint/no-explicit-any
         opts.output.sourcemap = 'inline'
         yield f
           .source(`${dir}/entry.js`)
@@ -88,7 +90,7 @@ test('inline sourcemaps', async () => {
           '# sourceMappingURL=data:application/json;base64'
         )
 
-        const base64Map = actual.split('base64')[1]
+        const base64Map = (actual as string).split('base64')[1]
         const utf8Map = Buffer.from(base64Map, 'base64').toString()
 
         expect(() => JSON.parse(utf8Map)).not.toThrow()
@@ -109,7 +111,8 @@ test('external sourcemaps', async () => {
   const taskr = new Taskr({
     plugins: [plugin, require('@taskr/clear')],
     tasks: {
-      *default(f: any): IterableIterator<Promise<unknown>> { // eslint-disable-line @typescript-eslint/no-explicit-any
+      *default(f: any): IterableIterator<Promise<unknown>> {
+        // eslint-disable-line @typescript-eslint/no-explicit-any
         opts.output.sourcemap = true
         yield f
           .source(`${dir}/entry.js`)

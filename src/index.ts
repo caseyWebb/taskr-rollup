@@ -1,8 +1,17 @@
 import * as path from 'path'
-import { rollup } from 'rollup'
+import {
+  rollup,
+  RollupBuild,
+  RollupOutput,
+  OutputAsset,
+  OutputChunk
+} from 'rollup'
 
 export = function(task): void {
-  task.plugin('rollup', { every: false }, function*(entryFiles, config): IterableIterator<Promise<unknown>> {
+  task.plugin('rollup', { every: false }, function*(
+    entryFiles,
+    config
+  ): IterableIterator<Promise<unknown>> {
     if (config.input) {
       throw new Error(
         `[taskr-rollup] 'input' is not supported. Use taskr.source(<input>)`
@@ -22,8 +31,8 @@ export = function(task): void {
     for (const entryFile of entryFiles) {
       inputConfig.input = path.format(entryFile)
 
-      const bundle = yield rollup(inputConfig)
-      const { output } = yield bundle.generate(outputConfig)
+      const bundle = (yield rollup(inputConfig)) as RollupBuild
+      const { output } = (yield bundle.generate(outputConfig)) as RollupOutput
 
       output.forEach((chunkOrAsset) => {
         const f: {
@@ -34,9 +43,11 @@ export = function(task): void {
           ...entryFile
         }
 
-        if (chunkOrAsset.isAsset) {
+        if ((chunkOrAsset as OutputAsset).isAsset) {
           // @TODO
         } else {
+          chunkOrAsset = chunkOrAsset as OutputChunk
+
           f.data = chunkOrAsset.code
           f.base = chunkOrAsset.fileName
 
