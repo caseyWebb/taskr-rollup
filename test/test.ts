@@ -1,6 +1,6 @@
 import * as path from 'path'
 
-import { RollupOptions } from 'rollup'
+import { RollupOptions, OutputOptions } from 'rollup'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -77,20 +77,23 @@ test('inline sourcemaps', async () => {
     tasks: {
       *default(f: any): IterableIterator<Promise<unknown>> {
         // eslint-disable-line @typescript-eslint/no-explicit-any
-        opts.output.sourcemap = 'inline'
+        ;(opts.output as OutputOptions).sourcemap = 'inline'
         yield f
           .source(`${dir}/entry.js`)
           .rollup(opts)
           .target(tmp)
 
-        const actual = yield f.$.read(`${tmp}/bundle.js`, 'utf8')
+        const actual = ((yield f.$.read(
+          `${tmp}/bundle.js`,
+          'utf8'
+        )) as unknown) as string
 
         expect(actual).toContain(expected)
         expect(actual).toContain(
           '# sourceMappingURL=data:application/json;base64'
         )
 
-        const base64Map = (actual as string).split('base64')[1]
+        const base64Map = actual.split('base64')[1]
         const utf8Map = Buffer.from(base64Map, 'base64').toString()
 
         expect(() => JSON.parse(utf8Map)).not.toThrow()
@@ -113,7 +116,7 @@ test('external sourcemaps', async () => {
     tasks: {
       *default(f: any): IterableIterator<Promise<unknown>> {
         // eslint-disable-line @typescript-eslint/no-explicit-any
-        opts.output.sourcemap = true
+        ;(opts.output as OutputOptions).sourcemap = true
         yield f
           .source(`${dir}/entry.js`)
           .rollup(opts)
