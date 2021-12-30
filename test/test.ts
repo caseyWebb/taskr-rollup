@@ -2,7 +2,7 @@ import * as path from 'path'
 
 import { RollupOptions, OutputOptions } from 'rollup'
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Taskr from 'taskr'
 
