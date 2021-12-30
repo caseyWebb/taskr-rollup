@@ -29,7 +29,7 @@ const expected = `var module = (function () {
 
   return entry;
 
-}());
+})();
 `
 
 const opts: RollupOptions = {
