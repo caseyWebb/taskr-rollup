@@ -38,7 +38,7 @@
     "eslint-config-profiscience": "^7.0.1",
     "jest": "^25.1.0",
     "prettier": "^2.5.1",
-    "rollup": "^2.62.0",
+    "rollup": "^3.2.2",
     "standard-version": "^9.0.0",
     "taskr": "^1.1.0",
     "ts-jest": "^25.0.0",
